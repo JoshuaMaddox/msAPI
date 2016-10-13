@@ -18,13 +18,13 @@ export default class ImgForm extends Component {
 
   render() {
     return (
-        <div className="col-sm-8 col-sm-offset-2 searchForm">
+        <div className="col-sm-8 col-sm-offset-2 searchForm text-center">
           <h3>Img Form Component</h3>
           <form onSubmit={this.sendImg}>
             <div className="form-group">
-              <input type="text" className="form-control" ref='url' id="term" placeholder="Enter a search term" required/>
+              <input type="text" className="form-control myFormControl" ref='url' id="term" placeholder="Enter a search term" required/>
             </div>
-            <button type="submit" className="customBtn btn btn-primary">Search</button>
+            <button type="submit" className="searchBtn">Search</button>
           </form>
         </div>
     )

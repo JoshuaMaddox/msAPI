@@ -27,6 +27,11 @@ app.use(webpackDevMiddleware(compiler, {
 }))
 app.use(webpackHotMiddleware(compiler))
 
+// app.get('*', (req, res) => {
+//   let indexPath = path.join(__dirname, '../src/index.html')
+//   res.sendFile(indexPath);
+// })
+
 app.use('/image', require('./routes/image'))
 
 app.listen(PORT, err => {

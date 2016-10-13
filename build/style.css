@@ -1,4 +1,86 @@
-.layOutContainer{
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+    color: #fff;
+}
+
+.linkRow{
+  margin-top: 30px;
+}
+
+
+.myBtn, .searchBtn, .searchBtnLayout {
+  padding: 20px;
+  background-color: #2c3e50;
+  margin: 10px;
+  color: #fff;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.myBtn:hover, .searchBtn:hover {
+  background-color: #7f8c8d;
+  transition: .5s;
+}
+
+.searchBtn, .searchBtnLayout {
+  width: 400px;
+  font-size: 25px;
+  text-transform: uppercase;
+}
+
+.searchBtnLayout {
+  margin-top: 90px;
+}
+
+.form-control {
+  background-color: #95a5a6;
+  height: 90px;
+  text-align: center;
+  color: #fff;
+  font-size: 25px;
+}
+
+.myFormControl{
+
+}
+
+
+.layOutContainer {
   margin: 25px auto 0 auto;
   text-align: center;
 }
+
+.translationRow {
+  padding:40px;
+  margin-top: 30px;
+  background-color: #c0392b;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  color: #fff;
+
+}
+
+.translationText {
+
+}
+
+input::-webkit-input-placeholder {
+color: #fff !important;
+}
+ 
+input:-moz-placeholder { /* Firefox 18- */
+color: #fff !important;  
+}
+ 
+input::-moz-placeholder {  /* Firefox 19+ */
+color: #fff !important;  
+}
+ 
+input:-ms-input-placeholder {  
+color: #fff !important;  
+}
+

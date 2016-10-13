@@ -11,8 +11,10 @@ export default class Layout extends Component {
   render() {
     return (
       <div className="row layOutContainer">
-        <h1>Microsoft API</h1> 
-        <Link to='/image' className='btn btn-primary'>Submit an Image</Link>
+        <h1>Best Translation App</h1>
+        <div className="row linkRow">
+          <Link to='/image' className='searchBtnLayout' >Submit an Image</Link>
+        </div> 
         <div>
           {this.props.children}
         </div>
