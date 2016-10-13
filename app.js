@@ -1,4 +1,4 @@
-const PORT = 8000,
+const PORT = process.env.PORT || 8000,
       cors = require('cors'),
       path = require('path'),
       morgan = require('morgan'),
@@ -27,10 +27,10 @@ app.use(webpackDevMiddleware(compiler, {
 }))
 app.use(webpackHotMiddleware(compiler))
 
-// app.get('*', (req, res) => {
-//   let indexPath = path.join(__dirname, '../src/index.html')
-//   res.sendFile(indexPath);
-// })
+app.get('/', (req, res) => {
+  let filepath = path.resolve('index.html')
+  res.sendFile(filepath)
+})
 
 app.use('/image', require('./routes/image'))
 
