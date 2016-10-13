@@ -1,9 +1,12 @@
 import API from '../API'
 
 const ToAPIActions = {
-  getFlashCards(){
-  console.log('In the toAPIActions action: ')
-  API.getFlashCards() 
+  sendURL(imgUrl){
+    API.sendURL(imgUrl) 
+  },
+
+  getTranslation(imageText){
+    API.getTranslation(imageText)
   }
 }
 export default ToAPIActions

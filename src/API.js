@@ -1,16 +1,28 @@
-import { get } from 'axios'
+import axios, { get, put, post } from 'axios'
 import ServerActions from './actions/ServerActions'
 
 const API = {
-  getFlashCards(){
-    get(`http://localhost:8000/test`)
+  sendURL(imgURL) { 
+    post(`/image/vision?url=${imgURL}`)
       .then(res => {
         let { data } = res
-        console.log('data: ', data)
-        ServerActions.receiveFlashCards(data)
+        ServerActions.receiveImgText(data)
       })
       .catch(console.error)
+  },
+
+  getTranslation(imageText){
+    get(`/image/translation?string=${imageText}`)
+    .then(res => {
+      let { data } = res
+      let translationArr = data.data.translations[0].translatedText
+      console.log('translationArr: ', translationArr)
+      ServerActions.receiveTranslation(translationArr)
+    })
   }
 }
 
 export default API
+
+
+

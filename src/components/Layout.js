@@ -1,42 +1,25 @@
 import React, { Component } from 'react'
-import CardStore from '../stores/CardStore'
+import ImageStore from '../stores/ImageStore'
 import ToAPIActions from '../actions/ToAPIActions'
+import { Link } from 'react-router'
 
 export default class Layout extends Component {
   constructor() {
     super();
-    this.state = {
-      testData: CardStore.getAllFlashCards()
-    }
-
-    this.testFunc = this.testFunc.bind(this)
-    this._onChange = this._onChange.bind(this)
-  }
-
-  componentWillMount() {
-    CardStore.startListening(this._onChange);
-  }
-
-  componentWillUnmount() {
-    CardStore.stopListening(this._onChange);
-  }
-
-  _onChange() {
-    this.setState({ 
-      testData: CardStore.getAllFlashCards() 
-    })
-  }
-
-  testFunc(e){
-    e.preventDefault()
-    ToAPIActions.getFlashCards()
   }
 
   render() {
     return (
       <div>
-        {this.state.testData ? <h1>{this.state.testData}</h1> : <h1>data not received</h1> }
-        <button className="btn btn-primary" onClick={this.testFunc}>Test</button> 
+        <div>
+          <h1>Microsoft API</h1> 
+          <button className="btn btn-primary" onClick={this.testFunc}>Test</button> 
+          <Link to='/image' className='btn btn-primary'>Submit an Image</Link>
+          <Link to='/image/translation' className='btn btn-primary'>See Translation</Link>
+          <div>
+            {this.props.children}
+          </div>
+        </div>
       </div>
 
     )
