@@ -4,7 +4,7 @@ const fs = require('fs'),
       trans = path.join(__dirname, '../data/translations.json'),
       axios = require('axios')
 
-require('dotenv').load()
+// require('dotenv').load()
 
 var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 exports.sendMail = function(transText, cb) {
