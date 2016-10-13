@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import ToAPIActions from '../actions/ToAPIActions'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
+import ImageTranslation from './ImageTranslation'
 
 export default class ImgForm extends Component {
   constructor() {
     super();
-
     this.sendImg = this.sendImg.bind(this)
   }
 
@@ -17,11 +17,9 @@ export default class ImgForm extends Component {
   }
 
   render() {
-
     return (
         <div className="col-sm-8 col-sm-offset-2 searchForm">
           <h3>Img Form Component</h3>
-          <Link to='/image/translation' className='btn btn-primary'>See Translation</Link>
           <form onSubmit={this.sendImg}>
             <div className="form-group">
               <input type="text" className="form-control" ref='url' id="term" placeholder="Enter a search term" required/>

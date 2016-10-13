@@ -1,8 +1,10 @@
 import { EventEmitter } from 'events'
 import AppDispatcher from '../AppDispatcher'
+import {  browserHistory } from 'react-router'
 
 let _imageText = ''
-let _translation = []
+let _translation = undefined
+let _message = undefined
 
 class ImageStore extends EventEmitter {
   constructor(){
@@ -13,9 +15,15 @@ class ImageStore extends EventEmitter {
         case 'IMAGE_TEXT_RECEIVED':
           _imageText = action.payload.imageText
           this.emit('CHANGE')
+          browserHistory.push('/image/translation')
           break
         case 'TRANSLATION_RECEIVED':
           _imageText = action.payload.translation
+          _message = undefined
+          this.emit('CHANGE')
+          break
+        case 'CONFIRMATION_RECEIVED':
+          _message = 'Email Sent!'
           this.emit('CHANGE')
           break
       }
@@ -38,6 +46,9 @@ class ImageStore extends EventEmitter {
     return _translation
   }
 
+  getMessage(){
+    return _message
+  }
 }
 
 export default new ImageStore

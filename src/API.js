@@ -11,14 +11,24 @@ const API = {
       .catch(console.error)
   },
 
-  getTranslation(imageText){
-    get(`/image/translation?string=${imageText}`)
+  getTranslation(imageText, id){
+    console.log('id: API', id);
+    get(`/image/translation?string=${imageText}&id=${id}`)
     .then(res => {
       let { data } = res
       let translationArr = data.data.translations[0].translatedText
-      console.log('translationArr: ', translationArr)
+      translationArr = translationArr.replace(/&#39;/g,"'")
       ServerActions.receiveTranslation(translationArr)
     })
+    .catch(console.error);
+  },
+
+  sendTransEmail(transToSend, email){
+    get(`/image/translation/email?q=${transToSend}&email=${email}`)
+    .then(res => {
+        ServerActions.confirmEmail()
+    })
+    .catch(console.error)
   }
 }
 

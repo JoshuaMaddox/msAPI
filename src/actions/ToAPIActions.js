@@ -5,8 +5,12 @@ const ToAPIActions = {
     API.sendURL(imgUrl) 
   },
 
-  getTranslation(imageText){
-    API.getTranslation(imageText)
+  getTranslation(imageText, id){
+    API.getTranslation(imageText, id)
+  },
+
+  sendTransEmail(transToSend, email){
+    API.sendTransEmail(transToSend, email)
   }
 }
 export default ToAPIActions

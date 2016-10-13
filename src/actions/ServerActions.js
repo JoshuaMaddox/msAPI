@@ -13,6 +13,12 @@ const ServerActions = {
       type: 'TRANSLATION_RECEIVED',
       payload: { translation }
     })
+  },
+
+  confirmEmail(){
+    AppDispatcher.dispatch({
+      type: 'CONFIRMATION_RECEIVED'
+    })
   }
 }
 export default ServerActions

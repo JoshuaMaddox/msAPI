@@ -3,15 +3,20 @@ import ImageStore from '../stores/ImageStore'
 import ToAPIActions from '../actions/ToAPIActions'
 import { Link } from 'react-router'
 
-export default class Layout extends Component {
+export default class ImageTranslation extends Component {
   constructor() {
     super();
     this.state = {
       imageText: ImageStore.getImageText(),
-      translation: ImageStore.getTranslation()
+      message: ImageStore.getMessage(),
+      languages: [{'Korean': 'ko'}, {'German': 'de'}, {"Chinese": 'zh-CN'}, {"Dutch": "nl"}, {'Filipino': 'tl'}, {'French': 'fr'}, {'Hebrew': 'iw'}, {'Japanese':'jw'}, {'Russian': 'ru'}, {'Turkish': 'tr'}, {'Yiddish': 'yi'}, {'Vietnamese': 'vi'}],
+      input: '',
+      transCounter: 0
     }
     this._onChange = this._onChange.bind(this)
     this.getTrans = this.getTrans.bind(this)
+    this.sendTranslationToEmail = this.sendTranslationToEmail.bind(this)
+    this._grabInput = this._grabInput.bind(this)
   }
 
   componentWillMount() {
@@ -25,23 +30,67 @@ export default class Layout extends Component {
   _onChange() {
     this.setState({ 
       imageText: ImageStore.getImageText(),
-      translation: ImageStore.getTranslation() 
+      message: ImageStore.getMessage()
     })
   }
 
-  getTrans(){
+  getTrans(e){
+    e.preventDefault();
+    let langId = e.target.id;
     const { imageText } = this.state
-    ToAPIActions.getTranslation(imageText)
+    ToAPIActions.getTranslation(imageText, langId)
+    this.setState({
+      transCounter: 1,
+      message: undefined
+    })
+  }
+
+  sendTranslationToEmail(trans){
+    let { input } = this.state;
+    ToAPIActions.sendTransEmail(trans, input);
+  }
+
+  _grabInput (e) {
+    let input = e.target.value;
+    this.setState({
+      input,
+    })
   }
 
   render() {
+    let { languages, imageText, transCounter, message } = this.state;
+    let showEmail;
+    let Message;
+
+    if (message !== undefined) {
+      Message = <h2>{message}</h2>
+    } else {
+      Message = <div></div>
+    }
+
+    if(transCounter > 0){
+      showEmail = (
+        <div>
+          <input type="email" onChange={this._grabInput} placeholder='YourEmailAdress@xxx.com'/>
+          <button id='sendEmail' onClick={() => this.sendTranslationToEmail(imageText)} >Send This Translation To My Email</button>
+        </div>
+      )
+    } else {
+      showEmail = <div></div>
+    }
     return (
       <div>
-        {this.state.imageText ? <h1>{this.state.imageText}</h1> : <h1>Send An Image URL to See Translation</h1> }
-        <button onClick={this.getTrans}>Get Translation</button>
-        <div className="row text-center">
-          {this.state.translation ? <h1>{this.state.translation}</h1> : <h1>Translation Not Received</h1> }
-        </div>
+        {this.state.imageText ? <h5>{this.state.imageText}</h5> : <h1>Send An Image URL to See Translation</h1> }
+        { 
+          languages.map((language, i) => {
+            let lang = Object.keys(language)
+            return (
+              <button key={i} id={language[lang[0]]} onClick={this.getTrans} >{lang[0]}</button>
+              )
+          })
+        }
+        {showEmail}
+        {Message}
       </div>
     )
   }
