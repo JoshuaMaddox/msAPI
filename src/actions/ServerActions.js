@@ -19,6 +19,13 @@ const ServerActions = {
     AppDispatcher.dispatch({
       type: 'CONFIRMATION_RECEIVED'
     })
+  },
+
+  confirmAudio(textToAudio){
+    AppDispatcher.dispatch({
+      type: 'AUDIO_CONFIRMATION_RECEIVED',
+      payload: { textToAudio }
+    })
   }
 }
 export default ServerActions

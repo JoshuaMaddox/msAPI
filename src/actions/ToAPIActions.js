@@ -9,8 +9,12 @@ const ToAPIActions = {
     API.getTranslation(imageText, id)
   },
 
-  sendTransEmail(transToSend, email){
-    API.sendTransEmail(transToSend, email)
-  }
+  sendTransEmail(transToSend, email, fileName){
+    API.sendTransEmail(transToSend, email, fileName)
+  },
+
+ getAudio(imageText){
+  API.getAudio(imageText)
+ }
 }
 export default ToAPIActions

@@ -23,12 +23,21 @@ const API = {
     .catch(console.error);
   },
 
-  sendTransEmail(transToSend, email){
-    get(`/image/translation/email?q=${transToSend}&email=${email}`)
+  sendTransEmail(transToSend, email, fileName){
+    get(`/image/translation/email?q=${transToSend}&email=${email}&fileName=${fileName}`)
     .then(res => {
         ServerActions.confirmEmail()
     })
     .catch(console.error)
+  },
+
+  getAudio(imageText){
+    get(`/image/audio?q=${imageText}`)
+      .then(res => {
+        let { data } = res
+        ServerActions.confirmAudio(data)
+      })
+      .catch(console.error)
   }
 }
 

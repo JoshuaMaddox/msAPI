@@ -27,12 +27,18 @@ app.use(webpackDevMiddleware(compiler, {
 }))
 app.use(webpackHotMiddleware(compiler))
 
-app.get('/', (req, res) => {
-  let filepath = path.resolve('index.html')
+app.use('/image', require('./routes/image'))
+
+// app.get('/hello_world.wav', (req, res) => {
+//   console.log('hi')
+//   res.redirect('.build/hello_world.wav');
+// });
+  
+app.get('*', (req, res) => {
+  let filepath = path.resolve('./build/index.html')
   res.sendFile(filepath)
 })
 
-app.use('/image', require('./routes/image'))
 
 app.listen(PORT, err => {
   console.log( err || `Express listening on port ${8000}`)

@@ -26,4 +26,12 @@ router.get('/translation', (req, res) => {
   })
 })
 
+router.get('/audio', (req, res) => {
+  let imageText = req.query
+  imageRequests.getAudio((err, textToAudio) => {
+    console.log('bool in routes: ', textToAudio);
+    res.send(textToAudio)
+  })
+})
+
 module.exports = router

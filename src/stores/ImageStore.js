@@ -5,6 +5,8 @@ import {  browserHistory } from 'react-router'
 let _imageText = ''
 let _translation = undefined
 let _message = undefined
+let _audioConfirmation = false
+let _fileName = ''
 
 class ImageStore extends EventEmitter {
   constructor(){
@@ -26,6 +28,11 @@ class ImageStore extends EventEmitter {
           _message = 'Email Sent!'
           this.emit('CHANGE')
           break
+        case 'AUDIO_CONFIRMATION_RECEIVED':
+          _audioConfirmation = true
+          _fileName = action.payload.textToAudio
+          setTimeout(() => {this.emit('CHANGE')}, 7000)
+          break;
       }
     })
   }
@@ -48,6 +55,14 @@ class ImageStore extends EventEmitter {
 
   getMessage(){
     return _message
+  }
+
+  getAudioConfirmation(){
+    return _audioConfirmation
+  }
+
+  getFileName(){
+    return _fileName
   }
 }
 

@@ -1,19 +1,41 @@
 const fs = require('fs'),
       path = require('path'),
+      watson = require('watson-developer-cloud'),
       imageText = path.join(__dirname, '../data/imageText.json'),
       trans = path.join(__dirname, '../data/translations.json'),
       axios = require('axios')
 
-// require('dotenv').load()
+let fileName = 0;
+
+require('dotenv').config({ silent: true})
+
+//delete to here
 
 var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 exports.sendMail = function(transText, cb) {
+  console.log('sanity 0000: ', transText.fileName);
+  let omega = transText.fileName;
   var helper = require('sendgrid').mail
   var from_email = new helper.Email('best_translation_app@Better-Than-Theirs.com')
   var to_email = new helper.Email(transText.email)
   var subject = "Here's Your Way Better Translation"
+
+
+// DELTE TO HERE
+  let newMusicFile = fs.readFileSync(path.join(__dirname, `../build/${omega}`)) 
+  let finalMusicFile = new Buffer(newMusicFile).toString('base64')
+  console.log('I am finalMusicFile ', finalMusicFile)
+
+  var attachment = new helper.Attachment()
+  attachment.setContent(finalMusicFile)
+  attachment.setType("audio/wav")
+  attachment.setFilename(omega)
+  attachment.setDisposition("attachment")
+
+  // var attachment = new helper('../build/audio_1.wav')
   var content = new helper.Content('text/plain', transText.q)
   var mail = new helper.Mail(from_email, subject, to_email, content)
+  mail.addAttachment(attachment)
   var request = sg.emptyRequest({
     method: 'POST',
     path: '/v3/mail/send',
@@ -94,5 +116,26 @@ exports.getTranslation = function(imageText, cb) {
       .catch(err => {
         cb(err);
       }) 
+  })
+}
+
+
+
+exports.getAudio = function(cb) {
+  fileName++
+  let textToAudio = `audio_${fileName}.wav`
+  exports.read((err, imgTxt) => {
+    var text_to_speech = watson.text_to_speech({
+      username: process.env.IBM_USER,
+      password: process.env.IBM_PASS,
+      version: 'v1'
+    });
+    var params = {
+      text: imgTxt,
+      voice: 'en-GB_KateVoice',
+      accept: 'audio/wav'
+    };
+    text_to_speech.synthesize(params).pipe(fs.createWriteStream(`./build/${textToAudio}`));
+    cb(null, textToAudio)
   })
 }

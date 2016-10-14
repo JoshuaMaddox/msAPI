@@ -11,9 +11,13 @@ export default class Layout extends Component {
   render() {
     return (
       <div className="row layOutContainer">
-        <h1>Best Translation App</h1>
+        <h1>BEST TRANSLATION APP</h1>
         <div className="row linkRow">
-          <Link to='/image' className='searchBtnLayout' >Submit an Image</Link>
+          <h3>GRAB TEXT OFF A PHOTO AND THEN TRANSLATE THAT TASTY TEXT</h3>
+          <h3>SAVE THE TRANSLATION AND THEN WISH EVERY TRANSLATION APP WAS SO GOOD</h3>
+        <div className="startBtnRow">
+          <Link to='/image' className='searchBtnLayout' >GET STARTED</Link>
+        </div>
         </div> 
         <div>
           {this.props.children}

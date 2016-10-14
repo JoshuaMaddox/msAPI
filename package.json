@@ -32,6 +32,7 @@
     "react-router": "^2.8.1",
     "sendgrid": "^4.5.0",
     "uuid": "^2.0.3",
+    "watson-developer-cloud": "^2.5.0",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.3",
     "webpack-hot-middleware": "^2.12.2"
