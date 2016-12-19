@@ -1,7 +1,7 @@
 {
-  "name": "more-express",
+  "name": "transmorgify",
   "version": "1.0.0",
-  "description": "",
+  "description": "An API frankenstein. Microsoft Cognitive Services OCR grabs the text out of an image file, sends it to Google translate, converts the text string into speech via Watson, ... ",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,7 @@
     "node": "6"
   },
   "keywords": [],
-  "author": "",
+  "author": "John Son <jsson77@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "alphamail": "^1.1.5",

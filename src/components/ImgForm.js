@@ -13,6 +13,7 @@ export default class ImgForm extends Component {
     e.preventDefault()
     const { url } = this.refs
     let imgUrl = url.value
+    console.log('imgUrl: ', imgUrl);
     ToAPIActions.sendURL(imgUrl)
   }
 
