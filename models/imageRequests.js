@@ -10,19 +10,19 @@ let fileName = 0;
 require('dotenv').config({ silent: true})
 
 //delete to here
-
+//  TODO: 
 var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 exports.sendMail = function(transText, cb) {
   console.log('sanity 0000: ', transText.fileName);
   let omega = transText.fileName;
   var helper = require('sendgrid').mail
-  var from_email = new helper.Email('best_translation_app@Better-Than-Theirs.com')
+  var from_email = new helper.Email('anonymous_mouse@transmorgify.com')
   var to_email = new helper.Email(transText.email)
   var subject = "Here's Your Way Better Translation"
 
 
 // DELTE TO HERE
-  let newMusicFile = fs.readFileSync(path.join(__dirname, `../build/${omega}`)) 
+  let newMusicFile = fs.readFileSync(path.join(__dirname, `../build/${omega}`))
   let finalMusicFile = new Buffer(newMusicFile).toString('base64')
   console.log('I am finalMusicFile ', finalMusicFile)
 
@@ -85,7 +85,7 @@ exports.getDescription = function(imgUrl, cb) {
   })
     .then((res) => {
       const { regions } = res.data
-      const { lines } = regions[0] 
+      const { lines } = regions[0]
       let newStr;
       let arr = []
         lines.forEach((line) => {
@@ -100,7 +100,7 @@ exports.getDescription = function(imgUrl, cb) {
     })
     .catch((err) => {
       cb(err)
-    }) 
+    })
 }
 
 exports.getTranslation = function(imageText, cb) {
@@ -115,7 +115,7 @@ exports.getTranslation = function(imageText, cb) {
       })
       .catch(err => {
         cb(err);
-      }) 
+      })
   })
 }
 
