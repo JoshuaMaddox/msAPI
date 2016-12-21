@@ -148,6 +148,8 @@ export default class ImageTranslation extends Component {
     } else {
       showEmail = <div></div>
     }
+
+    console.log('message00000000000000: ', message);
     return (
       <div className="row text-center">
         {this.state.imageText ? <div className='row translationRow'><h3 className='translationText'>{this.state.imageText}</h3></div> : <h1 className='row translationRow'>Send An Image URL to See Translation</h1> }
