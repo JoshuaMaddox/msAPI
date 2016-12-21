@@ -108,6 +108,9 @@ export default class ImageTranslation extends Component {
 
   restartApp() {
     browserHistory.push('/');
+  }
+
+  componentWillUnmount() {
     this.setState({
       message: undefined
     })
