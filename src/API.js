@@ -2,7 +2,7 @@ import axios, { get, put, post } from 'axios'
 import ServerActions from './actions/ServerActions'
 
 const API = {
-  sendURL(imgURL) { 
+  sendURL(imgURL) {
     post(`/image/vision?url=${imgURL}`)
       .then(res => {
         let { data } = res
@@ -13,6 +13,7 @@ const API = {
 
   getTranslation(imageText, id){
     console.log('id: API', id);
+    console.log('imageText: API', imageText);
     get(`/image/translation?string=${imageText}&id=${id}`)
     .then(res => {
       let { data } = res
@@ -35,6 +36,7 @@ const API = {
     get(`/image/audio?q=${imageText}`)
       .then(res => {
         let { data } = res
+        console.log('data in API: ', data);
         ServerActions.confirmAudio(data)
       })
       .catch(console.error)
@@ -42,6 +44,3 @@ const API = {
 }
 
 export default API
-
-
-

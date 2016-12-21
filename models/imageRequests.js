@@ -9,19 +9,14 @@ let fileName = 0;
 
 require('dotenv').config({ silent: true})
 
-//delete to here
-//  TODO: 
 var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 exports.sendMail = function(transText, cb) {
-  console.log('sanity 0000: ', transText.fileName);
   let omega = transText.fileName;
   var helper = require('sendgrid').mail
-  var from_email = new helper.Email('anonymous_mouse@transmorgify.com')
+  var from_email = new helper.Email('anonymous_mouse@transmorgi.com')
   var to_email = new helper.Email(transText.email)
-  var subject = "Here's Your Way Better Translation"
+  var subject = "Somebody sent you a transmorgi!"
 
-
-// DELTE TO HERE
   let newMusicFile = fs.readFileSync(path.join(__dirname, `../build/${omega}`))
   let finalMusicFile = new Buffer(newMusicFile).toString('base64')
   console.log('I am finalMusicFile ', finalMusicFile)
@@ -107,7 +102,7 @@ exports.getTranslation = function(imageText, cb) {
   exports.read((err, imgTxt) => {
     let { id } = imageText;
     let newText = encodeURIComponent(imgTxt)
-    let url = `https://www.googleapis.com/language/translate/v2?key=${process.env.GOOGLE_KEY}=${newText}&source=en&target=${id}`;
+    let url = `https://www.googleapis.com/language/translate/v2?key=${process.env.GOOGLE_KEY}&q=${newText}&source=en&target=${id}`;
     axios.get(url)
       .then((res) => {
         const { data } = res

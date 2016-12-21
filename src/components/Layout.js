@@ -7,10 +7,11 @@ export default class Layout extends Component {
   render() {
     return (
       <div className="row layOutContainer">
-        <h1>TRANSMORGIFY</h1>
+        <h1>TRANSMORGI'S 3 STEPS</h1>
         <div className="row linkRow">
-          <h3>GRAB TEXT OFF A PHOTO AND THEN TRANSLATE THAT TASTY TEXT</h3>
-          <h3>SAVE THE TRANSLATION AND THEN WISH EVERY TRANSLATION APP WAS SO GOOD</h3>
+          <h3>1. ENTER IN URL OF A PHOTO WITH ENGLISH TEXT ON IT</h3>
+          <h3>2. GRAB TEXT OFF PHOTO AND THEN TRANSLATE THAT TASTY TEXT</h3>
+          <h3>3. TRANSMORGIFY THAT TEXT INTO AUDIO AND THEN EMAIL IT TO YOUR MATES</h3>
         <div className="startBtnRow">
           <Link to='/image' className='searchBtnLayout' >GET STARTED</Link>
         </div>

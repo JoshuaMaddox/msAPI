@@ -1,5 +1,5 @@
 {
-  "name": "transmorgify",
+  "name": "TRANSMORGI",
   "version": "1.0.0",
   "description": "An API frankenstein. Microsoft Cognitive Services OCR grabs the text out of an image file, sends it to Google translate, converts the text string into speech via Watson, ... ",
   "main": "app.js",

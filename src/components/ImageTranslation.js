@@ -8,6 +8,7 @@ var al = 0;
 export default class ImageTranslation extends Component {
   constructor() {
     super();
+
     this.state = {
       imageText: ImageStore.getImageText(),
       message: ImageStore.getMessage(),
@@ -17,15 +18,16 @@ export default class ImageTranslation extends Component {
       audioConfirm: ImageStore.getAudioConfirmation(),
       fileName: ImageStore.getFileName(),
       al: 0
-
     }
+
     this._onChange = this._onChange.bind(this)
     this.getTrans = this.getTrans.bind(this)
     this.sendTranslationToEmail = this.sendTranslationToEmail.bind(this)
     this._grabInput = this._grabInput.bind(this)
     this.getAudio = this.getAudio.bind(this)
     this.progressBarSim = this.progressBarSim.bind(this)
-
+    this.clearAudioPlayer = this.clearAudioPlayer.bind(this)
+    this.getEmailForm = this.getEmailForm.bind(this)
   }
 
   componentWillMount() {
@@ -40,7 +42,7 @@ export default class ImageTranslation extends Component {
   }
 
   _onChange() {
-    this.setState({ 
+    this.setState({
       imageText: ImageStore.getImageText(),
       message: ImageStore.getMessage(),
       audioConfirm: ImageStore.getAudioConfirmation(),
@@ -54,15 +56,16 @@ export default class ImageTranslation extends Component {
     const { imageText } = this.state
     ToAPIActions.getTranslation(imageText, langId)
     this.setState({
-      transCounter: 1,
       message: undefined
     })
-
   }
 
   sendTranslationToEmail(trans){
     let { input, fileName } = this.state;
     ToAPIActions.sendTransEmail(trans, input, fileName);
+    this.setState({
+      transCounter: 0
+    })
   }
 
   _grabInput (e) {
@@ -82,7 +85,6 @@ export default class ImageTranslation extends Component {
       })
       document.getElementById('progressBar').value = newAl
     if(newAl === 100){
-      console.log('In the if statement: ', al)
       clearInterval(intra)
       return;
     }
@@ -92,14 +94,27 @@ export default class ImageTranslation extends Component {
   getAudio(){
     const { imageText } = this.state
     ToAPIActions.getAudio(imageText)
-    this.progressBarSim()  
+    this.progressBarSim()
+  }
+
+  getEmailForm() {
+    this.setState({
+      transCounter: 1
+    })
+  }
+
+  clearAudioPlayer() {
+    this.setState({
+      al: 0
+    })
   }
 
   render() {
     let { languages, imageText, transCounter, message, audioConfirm, fileName, al } = this.state;
     let showEmail;
     let Message;
-    let audioFile = <audio controls type="audio/x-wav" src={`../${fileName}`}/>
+    let playerClear = <button onClick={this.clearAudioPlayer}>X</button>
+    let audioPlayer = <audio controls type="audio/x-wav" src={`../${fileName}`}/>
     let progressBar = <progress id='progressBar' value="0" max="100" style={{width: '500px', height: '20px'}}></progress>
 
     if (message !== undefined) {
@@ -110,14 +125,14 @@ export default class ImageTranslation extends Component {
 
     if(al > 99){
       progressBar = <progress id='progressBar' value="0" max="100" style={{width: '500px', height: '20px'}} hidden></progress>
-    } 
+    }
 
     if(transCounter > 0){
-      audioFile = <audio controls type="audio/x-wav" src={`../${fileName}`} hidden/>
+      audioPlayer = <audio controls type="audio/x-wav" src={`../${fileName}`} hidden/>
       showEmail = (
         <div className="row emailRow text-center">
-          <input type="email" className='emailInput' onChange={this._grabInput} placeholder='ENTER YOUR EMAIL ADDRESS'/><br />
-          <button id='sendEmail' className='myBtn' onClick={() => this.sendTranslationToEmail(imageText)} >GIMMIE TRANSLATION</button>
+          <input type="email" className='emailInput' onChange={this._grabInput} placeholder='ENTER AN EMAIL ADDRESS'/><br />
+          <button id='sendEmail' className='myBtn' onClick={() => this.sendTranslationToEmail(imageText)} >DISPATCH YOUR TRANSMORGi</button>
         </div>
       )
     } else {
@@ -126,11 +141,13 @@ export default class ImageTranslation extends Component {
     return (
       <div className="row text-center">
         {this.state.imageText ? <div className='row translationRow'><h3 className='translationText'>{this.state.imageText}</h3></div> : <h1 className='row translationRow'>Send An Image URL to See Translation</h1> }
-        {this.state.al ? progressBar : <button className='myBtn' onClick={this.getAudio}>Turn Text To Audio</button>}
-        {(this.state.al > 99) ? audioFile : <div></div>}
+        {this.state.al ? progressBar : <button className='myBtn' onClick={this.getAudio}>2. Turn Text To Audio</button>}
+        {(this.state.al > 98) ? audioPlayer : <div></div>}
+        {(this.state.al > 98) ? playerClear : <div></div>}
+        <button className='myBtn' onClick={this.getEmailForm}>3. Email Text & Audio</button>
         {Message}
         {showEmail}
-        { 
+        {
           languages.map((language, i) => {
             let lang = Object.keys(language)
             return (
@@ -139,11 +156,9 @@ export default class ImageTranslation extends Component {
               </div>
               )
           })
-
         }
-        
+
       </div>
     )
   }
 }
-  

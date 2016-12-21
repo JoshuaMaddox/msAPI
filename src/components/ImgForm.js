@@ -24,7 +24,7 @@ export default class ImgForm extends Component {
             <div className="form-group">
               <input type="text" className="form-control myFormControl" ref='url' id="term" placeholder="ENTER AN IMAGE URL" required/>
             </div>
-            <button type="submit" className="searchBtn">GET TEXT FROM IMAGE</button>
+            <button type="submit" className="searchBtn">1. GET TEXT FROM IMAGE</button>
           </form>
         </div>
     )

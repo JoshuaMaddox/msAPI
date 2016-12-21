@@ -29,16 +29,14 @@ app.use(webpackHotMiddleware(compiler))
 
 app.use('/image', require('./routes/image'))
 
-// app.get('/hello_world.wav', (req, res) => {
-//   console.log('hi')
-//   res.redirect('.build/hello_world.wav');
-// });
-  
 app.get('*', (req, res) => {
   let filepath = path.resolve('./build/index.html')
   res.sendFile(filepath)
 })
 
+// app.use('*', function (request, response) {
+//   response.sendFile(path.join(__dirname, './build/index.html'));
+// });
 
 app.listen(PORT, err => {
   console.log( err || `Express listening on port ${8000}`)
