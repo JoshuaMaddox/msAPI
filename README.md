@@ -12,7 +12,7 @@ FUTURE FEATURES:
 
 Built by Joshua Maddox and John Son.
 
-Deployed on Heroku [here](https://warm-river-73199.herokuapp.com/).
+Deployed on Heroku [here](http://transmorgi.herokuapp.com/).
 
 Latest Release: December 20th, 2016.
 
