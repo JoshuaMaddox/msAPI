@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ImageStore from '../stores/ImageStore'
 import ToAPIActions from '../actions/ToAPIActions'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 
 var al = 0;
 
@@ -107,7 +107,7 @@ export default class ImageTranslation extends Component {
   }
 
   restartApp() {
-    console.log('Sanity:restartApp!');
+    browserHistory.push('/');
   }
 
   clearAudioPlayer() {
@@ -152,7 +152,7 @@ export default class ImageTranslation extends Component {
         {(this.state.al > 98) ? audioPlayer : <div></div>}
         {(this.state.al > 98) ? playerClear : <div></div>}
         <button className='myBtn' onClick={this.getEmailForm}>3. Email Text & Audio</button>
-        {restartAppTrigger ? <button className='myBtn' onClick={this.restartApp}>RESTART</button> : <div></div>}
+        {restartAppTrigger ? <button className='myBtn' onClick={this.restartApp}>4. RESTART</button> : <div></div>}
         {Message}
         {showEmail}
         {
