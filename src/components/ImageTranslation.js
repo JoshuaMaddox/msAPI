@@ -17,7 +17,8 @@ export default class ImageTranslation extends Component {
       transCounter: 0,
       audioConfirm: ImageStore.getAudioConfirmation(),
       fileName: ImageStore.getFileName(),
-      al: 0
+      al: 0,
+      restartAppTrigger: false
     }
 
     this._onChange = this._onChange.bind(this)
@@ -28,6 +29,7 @@ export default class ImageTranslation extends Component {
     this.progressBarSim = this.progressBarSim.bind(this)
     this.clearAudioPlayer = this.clearAudioPlayer.bind(this)
     this.getEmailForm = this.getEmailForm.bind(this)
+    this.restartApp = this.restartApp.bind(this)
   }
 
   componentWillMount() {
@@ -64,7 +66,8 @@ export default class ImageTranslation extends Component {
     let { input, fileName } = this.state;
     ToAPIActions.sendTransEmail(trans, input, fileName);
     this.setState({
-      transCounter: 0
+      transCounter: 0,
+      restartAppTrigger: true
     })
   }
 
@@ -103,6 +106,10 @@ export default class ImageTranslation extends Component {
     })
   }
 
+  restartApp() {
+    console.log('Sanity:restartApp!');
+  }
+
   clearAudioPlayer() {
     this.setState({
       al: 0
@@ -110,7 +117,7 @@ export default class ImageTranslation extends Component {
   }
 
   render() {
-    let { languages, imageText, transCounter, message, audioConfirm, fileName, al } = this.state;
+    let { languages, imageText, transCounter, message, audioConfirm, fileName, al, restartAppTrigger } = this.state;
     let showEmail;
     let Message;
     let playerClear = <button onClick={this.clearAudioPlayer}>X</button>
@@ -145,6 +152,7 @@ export default class ImageTranslation extends Component {
         {(this.state.al > 98) ? audioPlayer : <div></div>}
         {(this.state.al > 98) ? playerClear : <div></div>}
         <button className='myBtn' onClick={this.getEmailForm}>3. Email Text & Audio</button>
+        {restartAppTrigger ? <button className='myBtn' onClick={this.restartApp}>RESTART</button> : <div></div>}
         {Message}
         {showEmail}
         {
