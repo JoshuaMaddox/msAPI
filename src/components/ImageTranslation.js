@@ -110,12 +110,6 @@ export default class ImageTranslation extends Component {
     browserHistory.push('/');
   }
 
-  componentDidUnmount() {
-    this.setState({
-      message: undefined
-    })
-  }
-
   clearAudioPlayer() {
     this.setState({
       al: 0

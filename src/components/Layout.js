@@ -7,7 +7,7 @@ export default class Layout extends Component {
   render() {
     return (
       <div className="row layOutContainer">
-        <h1>TRANSMORGI'S 3 STEPS</h1>
+        <h1>3 STEPS OF TRANSMORGI</h1>
         <div className="row linkRow">
           <h3>1. ENTER IN URL OF A PHOTO WITH ENGLISH TEXT ON IT</h3>
           <h3>2. GRAB TEXT OFF PHOTO AND THEN TRANSLATE THAT TASTY TEXT</h3>

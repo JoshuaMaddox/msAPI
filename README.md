@@ -9,6 +9,7 @@ TRANSMORGI is a web app experimenting with various APIs. TRANSMORGI will first t
 
 FUTURE FEATURES:
 1. Dropdown menu to allow the user to choose from various languages (besides American English) to convert into an audio file.
+2. Clear message after email being sent.
 
 Built by Joshua Maddox and John Son.
 
