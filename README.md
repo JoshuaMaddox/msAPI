@@ -14,10 +14,10 @@ Built by Joshua Maddox and John Son.
 
 Deployed on Heroku [here](https://warm-river-73199.herokuapp.com/).
 
-Latest Release: November 20rd, 2016.
+Latest Release: December 20th, 2016.
 
 <img src="http://i.imgur.com/MGHq9Ne.jpg" />
-<img src="http:/i.imgur.com/vwDFOzy.jpg" />
+<img src="http://i.imgur.com/vwDFOzy.jpg" />
 
 ## CONTRIBUTORS:
   1. [Joshua Maddox](https://github.com/JoshuaMaddox)
