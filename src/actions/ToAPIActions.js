@@ -2,7 +2,7 @@ import API from '../API'
 
 const ToAPIActions = {
   sendURL(imgUrl){
-    API.sendURL(imgUrl) 
+    API.sendURL(imgUrl)
   },
 
   getTranslation(imageText, id){
@@ -13,8 +13,8 @@ const ToAPIActions = {
     API.sendTransEmail(transToSend, email, fileName)
   },
 
- getAudio(imageText){
+  getAudio(imageText){
   API.getAudio(imageText)
- }
+  }
 }
 export default ToAPIActions
