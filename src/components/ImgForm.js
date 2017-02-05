@@ -26,6 +26,10 @@ export default class ImgForm extends Component {
             </div>
             <button type="submit" className="searchBtn">1. GET TEXT FROM IMAGE</button>
           </form>
+          <form onSubmit={this.uploadImg}>
+            Upload your own image
+            <input type="file" name="userUpload" id="userUpload"/>
+          </form>
         </div>
     )
   }
