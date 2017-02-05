@@ -5,7 +5,7 @@ import { setStep } from '../../actions/stepperActions';
 
 const styles = {
   active: {
-    backgroundColor: 'white',
+    backgroundColor: 'red',
   }
 }
 
@@ -16,6 +16,7 @@ export default class Stepper extends Component {
 
   render() {
     const { step } = this.props;
+
     return (
       <div>
         <span className="step-oval" style={step === 1 ? styles.active : {}} onClick={() => browserHistory.push('/')}></span>
