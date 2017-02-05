@@ -12,11 +12,12 @@ const API = {
   },
 
   getTranslation(imageText, id){
-    console.log('id: API', id);
-    console.log('imageText: API', imageText);
+    console.log('id: API.js', id);
+    console.log('imageText: API.js', imageText);
     get(`/image/translation?string=${imageText}&id=${id}`)
     .then(res => {
       let { data } = res
+      console.log('res in API.js: ', res);
       let translationArr = data.data.translations[0].translatedText
       translationArr = translationArr.replace(/&#39;/g,"'")
       ServerActions.receiveTranslation(translationArr)
