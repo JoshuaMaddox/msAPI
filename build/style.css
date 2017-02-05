@@ -103,16 +103,37 @@ a:hover, a:focus {
 input::-webkit-input-placeholder {
 color: #fff !important;
 }
- 
+
 input:-moz-placeholder { /* Firefox 18- */
-color: #fff !important;  
-}
- 
-input::-moz-placeholder {  /* Firefox 19+ */
-color: #fff !important;  
-}
- 
-input:-ms-input-placeholder {  
-color: #fff !important;  
+color: #fff !important;
 }
 
+input::-moz-placeholder {  /* Firefox 19+ */
+color: #fff !important;
+}
+
+input:-ms-input-placeholder {
+color: #fff !important;
+}
+
+
+/*Stepper CSS*/
+/*Stepper CSS*/
+/*Stepper CSS*/
+.step-oval {
+  width: 12px;
+  height: 12px;
+  background-color: clear;
+  box-shadow: 0 0 8px 0 #9c49b0;
+  display: inline-block;
+  margin-left: 14.5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.step-oval-active {
+  background-color: #ffffff;
+}
+/*Stepper CSS*/
+/*Stepper CSS*/
+/*Stepper CSS*/
