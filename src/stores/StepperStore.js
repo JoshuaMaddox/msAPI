@@ -1,20 +1,20 @@
 import { EventEmitter } from 'events'
 import AppDispatcher from '../AppDispatcher'
-import {  browserHistory } from 'react-router'
+// import {  browserHistory } from 'react-router'
 
 let _step = 1
 
-class StepperStore; extends EventEmitter {
+class StepperStore extends EventEmitter {
   constructor(){
     super()
 
     AppDispatcher.register(action => {
       switch(action.type) {
         case 'STEP_TAKEN':
+          console.log('_step ready in Store: ', _step);
           _step = action.payload
-          console.log('_step in Store: ', _step);
+          console.log('_step set in Store: ', _step);
           this.emit('CHANGE')
-          // browserHistory.push('/image/translation')
           break
       }
     })

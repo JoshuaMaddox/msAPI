@@ -3,6 +3,8 @@ import ImageStore from '../stores/ImageStore'
 import ToAPIActions from '../actions/ToAPIActions'
 import { Link } from 'react-router'
 
+import Stepper from './stepper/stepper'
+
 export default class Layout extends Component {
   render() {
     return (
@@ -19,6 +21,7 @@ export default class Layout extends Component {
         <div>
           {this.props.children}
         </div>
+        <Stepper step={1}/>
       </div>
 
     )

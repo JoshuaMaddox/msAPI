@@ -1,4 +1,4 @@
-import AppDispatcher from './AppDispatcher';
+import AppDispatcher from '../AppDispatcher';
 
 const stepperActions = {
   setStep(step) {

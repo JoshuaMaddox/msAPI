@@ -3,6 +3,8 @@ import ImageStore from '../stores/ImageStore'
 import ToAPIActions from '../actions/ToAPIActions'
 import { Link, browserHistory } from 'react-router'
 
+import Stepper from './stepper/stepper'
+
 var al = 0;
 
 export default class ImageTranslation extends Component {
@@ -168,6 +170,7 @@ export default class ImageTranslation extends Component {
           })
         }
 
+        <Stepper step={3}/>
       </div>
     )
   }

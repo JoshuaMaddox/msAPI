@@ -3,6 +3,8 @@ import ToAPIActions from '../actions/ToAPIActions'
 import { Link, browserHistory } from 'react-router'
 import ImageTranslation from './ImageTranslation'
 
+import Stepper from './stepper/stepper'
+
 export default class ImgForm extends Component {
   constructor() {
     super();
@@ -30,6 +32,7 @@ export default class ImgForm extends Component {
             Upload your own image
             <input type="file" name="userUpload" id="userUpload"/>
           </form>
+          <Stepper step={2}/>
         </div>
     )
   }
