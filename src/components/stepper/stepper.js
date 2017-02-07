@@ -5,7 +5,7 @@ import { setStep } from '../../actions/stepperActions';
 
 const styles = {
   active: {
-    backgroundColor: 'red',
+    backgroundColor: 'pink',
   }
 }
 
