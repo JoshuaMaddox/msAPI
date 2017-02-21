@@ -120,6 +120,10 @@ color: #fff !important;
 /*Stepper CSS*/
 /*Stepper CSS*/
 /*Stepper CSS*/
+.stepperDiv {
+  margin-top: 5em;
+}
+
 .step-oval {
   width: 12px;
   height: 12px;

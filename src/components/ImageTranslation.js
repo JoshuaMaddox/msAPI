@@ -150,26 +150,29 @@ export default class ImageTranslation extends Component {
 
     console.log('message00000000000000: ', message);
     return (
-      <div className="row text-center">
-        {this.state.imageText ? <div className='row translationRow'><h3 className='translationText'>{this.state.imageText}</h3></div> : <h1 className='row translationRow'>Send An Image URL to See Translation</h1> }
-        {this.state.al ? progressBar : <button className='myBtn' onClick={this.getAudio}>2. Turn Text To Audio</button>}
-        {(this.state.al > 98) ? audioPlayer : <div></div>}
-        {(this.state.al > 98) ? playerClear : <div></div>}
-        <button className='myBtn' onClick={this.getEmailForm}>3. Email Text & Audio</button>
-        {restartAppTrigger ? <button className='myBtn' onClick={this.restartApp}>4. RESTART</button> : <div></div>}
-        {Message}
-        {showEmail}
-        {
-          languages.map((language, i) => {
-            let lang = Object.keys(language)
-            return (
-              <div className="col-sm-4" key={i}>
-                <button className='myBtn' id={language[lang[0]]} onClick={this.getTrans} >{lang[0]}</button>
-              </div>
-              )
-          })
-        }
+      <div className='text-center'>
+        <div className="row text-center">
+          {this.state.imageText ? <div className='row translationRow'><h3 className='translationText'>{this.state.imageText}</h3></div> : <h1 className='row translationRow'>Send An Image URL to See Translation</h1> }
+          {this.state.al ? progressBar : <button className='myBtn' onClick={this.getAudio}>2. Turn Text To Audio</button>}
+          {(this.state.al > 98) ? audioPlayer : <div></div>}
+          {(this.state.al > 98) ? playerClear : <div></div>}
+          <button className='myBtn' onClick={this.getEmailForm}>3. Email Text & Audio</button>
+          {restartAppTrigger ? <button className='myBtn' onClick={this.restartApp}>4. RESTART</button> : <div></div>}
+          {Message}
+          {showEmail}
+          {
+            languages.map((language, i) => {
+              let lang = Object.keys(language)
+              return (
+                <div className="col-sm-4" key={i}>
+                  <button className='myBtn' id={language[lang[0]]} onClick={this.getTrans} >{lang[0]}</button>
+                </div>
+                )
+            })
+          }
 
+
+        </div>
         <Stepper step={3}/>
       </div>
     )
