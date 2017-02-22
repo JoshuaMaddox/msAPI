@@ -148,7 +148,7 @@ export default class ImageTranslation extends Component {
       showEmail = <div></div>
     }
 
-    console.log('message00000000000000: ', message);
+    // console.log('message00000000000000: ', message);
     return (
       <div className='text-center'>
         <div className="row text-center">
