@@ -13,6 +13,7 @@ router.post('/vision', (req, res) => {
 //Send Email With Translation
 router.get('/translation/email', (req, res) => {
   let transEmail = req.query
+  console.log('Sanity:');
   imageRequests.sendMail(transEmail, (err, confirmation) => {
     res.send(confirmation)
   })

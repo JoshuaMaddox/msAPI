@@ -13,13 +13,14 @@ var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 exports.sendMail = function(transText, cb) {
   let omega = transText.fileName;
   var helper = require('sendgrid').mail
-  var from_email = new helper.Email('anonymous_mouse@transmorgi.com')
+  var from_email = new helper.Email('transmorgiBot@transmorgi.com')
   var to_email = new helper.Email(transText.email)
-  var subject = "Somebody sent you a transmorgi!"
-
+  var subject = "Somebody sent you a Transmorgi!"
+  console.log('Sanity:0');
   let newMusicFile = fs.readFileSync(path.join(__dirname, `../build/${omega}`))
   let finalMusicFile = new Buffer(newMusicFile).toString('base64')
   console.log('I am finalMusicFile ', finalMusicFile)
+  console.log('Sanity:1');
 
   var attachment = new helper.Attachment()
   attachment.setContent(finalMusicFile)
