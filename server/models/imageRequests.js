@@ -99,10 +99,12 @@ exports.getDescription = function(imgUrl, cb) {
 }
 
 exports.getTranslation = function(imageText, cb) {
+  console.log('process.env.GOOGLE_KEY: ', process.env.GOOGLE_KEY);
   exports.read((err, imgTxt) => {
     let { id } = imageText;
     let newText = encodeURIComponent(imgTxt)
     let url = `https://www.googleapis.com/language/translate/v2?key=${process.env.GOOGLE_KEY}&q=${newText}&source=en&target=${id}`;
+    console.log('url: ', url);
     axios.get(url)
       .then((res) => {
         const { data } = res
@@ -113,8 +115,6 @@ exports.getTranslation = function(imageText, cb) {
       })
   })
 }
-
-
 
 exports.getAudio = function(cb) {
   fileName++
