@@ -16,22 +16,23 @@ exports.sendMail = function(transText, cb) {
   var from_email = new helper.Email('transmorgiBot@transmorgi.com')
   var to_email = new helper.Email(transText.email)
   var subject = "Somebody sent you a Transmorgi!"
-  console.log('Sanity:0');
-  let newMusicFile = fs.readFileSync(path.join(__dirname, `../build/${omega}`))
-  let finalMusicFile = new Buffer(newMusicFile).toString('base64')
-  console.log('I am finalMusicFile ', finalMusicFile)
-  console.log('Sanity:1');
 
-  var attachment = new helper.Attachment()
-  attachment.setContent(finalMusicFile)
-  attachment.setType("audio/wav")
-  attachment.setFilename(omega)
-  attachment.setDisposition("attachment")
+  //  IBM Text-to-Speech not working, taking out music file.
+  // let newMusicFile = fs.readFileSync(path.join(__dirname, `../build/${omega}`))
+  // let finalMusicFile = new Buffer(newMusicFile).toString('base64')
+  //
+  // var attachment = new helper.Attachment()
+  // attachment.setContent(finalMusicFile)
+  // attachment.setType("audio/wav")
+  // attachment.setFilename(omega)
+  // attachment.setDisposition("attachment")
 
   // var attachment = new helper('../build/audio_1.wav')
   var content = new helper.Content('text/plain', transText.q)
   var mail = new helper.Mail(from_email, subject, to_email, content)
-  mail.addAttachment(attachment)
+
+  //  IBM Text-to-Speech not working, taking out music file.
+  // mail.addAttachment(attachment)
   var request = sg.emptyRequest({
     method: 'POST',
     path: '/v3/mail/send',
