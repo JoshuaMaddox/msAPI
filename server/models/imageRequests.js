@@ -118,6 +118,9 @@ exports.getTranslation = function(imageText, cb) {
 }
 
 exports.getAudio = function(cb) {
+  console.log('process.env.IBM_USER: ', process.env.IBM_USER);
+  console.log('process.env.IBM_PASS: ', process.env.IBM_PASS);
+
   fileName++
   let textToAudio = `audio_${fileName}.wav`
   exports.read((err, imgTxt) => {
